@@ -23,10 +23,10 @@ public class Drag : MonoBehaviour
     {
         inventoryScript = InventoryScript.instance;
 
-        transform.parent = inventoryScript.inventorySlots[inventoryScript.storedItems].transform;
+        transform.parent = inventoryScript.inventorySlots[inventoryScript.items.Count].transform;
         rectTransform.localPosition = Vector2.zero;
 
-        inventoryScript.storedItems++;
+        inventoryScript.items.Add(gameObject);
     }
     public void DragHandeler(BaseEventData data)
     {
@@ -53,6 +53,11 @@ public class Drag : MonoBehaviour
             }
         }
         
+        if(transform.parent != savedTransform)
+        {
+            inventoryScript.items.Remove(gameObject);
+            inventoryScript.Sort();
+        }
         rectTransform.localPosition = Vector2.zero;
     }
     public void Grab()
