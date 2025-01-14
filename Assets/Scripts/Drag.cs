@@ -17,7 +17,7 @@ public class Drag : MonoBehaviour
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        
+        canvas = FindObjectOfType<Canvas>();
     }
     private void Start()
     {

@@ -7,5 +7,6 @@ public class AlterationDropScript : MonoBehaviour, IDropable
     void IDropable.OnCollect()
     {
         InventoryScript.instance.AddItem();
+        Destroy(gameObject);
     }
 }

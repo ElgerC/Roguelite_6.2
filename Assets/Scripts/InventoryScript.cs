@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InventoryScript : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class InventoryScript : MonoBehaviour
     public static InventoryScript instance;
 
     [SerializeField] private GameObject AlterationUI;
+    [SerializeField] private GameObject UIElements;
     private void Awake()
     {
         if (instance == null)
@@ -20,18 +22,24 @@ public class InventoryScript : MonoBehaviour
         else
             Destroy(this);
     }
-    public void ActiveSwitch()
+    public void ActiveSwitch(InputAction.CallbackContext ctx)
     {
-        gameObject.SetActive(!gameObject.activeSelf);
-        if (gameObject.activeSelf)
+        if (ctx.performed)
         {
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Time.timeScale = 1f;
+
+            UIElements.SetActive(!UIElements.activeSelf);
+            if (UIElements.activeSelf)
+            {
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+            }
         }
     }
+
+    
 
     public void AddItem()
     {
