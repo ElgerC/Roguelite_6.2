@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
 {
@@ -14,6 +15,12 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
 
     private States state = States.Roaming;
 
+    protected GameObject player;
+
+    [SerializeField] protected GameObject roamPoint;
+    [SerializeField] protected float roamMaxDist;
+    protected bool m_OutsideRoam;
+
     [SerializeField] private float detectionRange;
     [SerializeField] private LayerMask detectionLayerMask;
 
@@ -21,6 +28,8 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
 
     [SerializeField] private float health;
     [SerializeField] private float value;
+
+    [SerializeField] protected int moveDirection;
 
     private Animator animator;
 
@@ -51,6 +60,9 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
                 }
                 else if (!PlayerDetection(detectionRange))
                 {
+                    int direction = (int)(new Vector2(roamPoint.transform.position.x, 0) - new Vector2(transform.position.x, 0)).normalized.x;
+                    moveDirection = direction;
+                    m_OutsideRoam = true;
                     state = States.Roaming;
                 }
                 break;
@@ -68,12 +80,15 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
 
     private bool PlayerDetection(float range)
     {
-        if (Physics2D.OverlapCircle(transform.position, range, detectionLayerMask))
+        Collider2D playerDetect = Physics2D.OverlapCircle(transform.position, range, detectionLayerMask);
+        if (playerDetect != null)
         {
+            player = playerDetect.gameObject;
             return true;
         }
         else
         {
+            player = null;
             return false;
         }
     }
