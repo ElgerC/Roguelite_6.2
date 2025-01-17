@@ -8,9 +8,11 @@ public class WalkingEnemyScript : GeneralEnemyScript
 
     [SerializeField] private float speed;
 
-    //-1 = left, 1 = right
-
-
+    [SerializeField] private GameObject footHeight;
+    [SerializeField] private GameObject kneeHeight;
+    [SerializeField] private float stepRayLength;
+    [SerializeField] private LayerMask stepLayerMask;
+    [SerializeField] private float stepHeight;
 
     protected override void Awake()
     {
@@ -20,6 +22,7 @@ public class WalkingEnemyScript : GeneralEnemyScript
     }
     protected override void Roaming()
     {
+        Step();
         if (Vector2.Distance(transform.position, roamPoint.transform.position) >= roamMaxDist)
         {
             if (!m_OutsideRoam)
@@ -31,12 +34,18 @@ public class WalkingEnemyScript : GeneralEnemyScript
         else
             m_OutsideRoam = false;
 
+
+        transform.forward = new Vector3(0, 0, -moveDirection);
         rb.velocity = new Vector2(moveDirection * speed, rb.velocity.y);
     }
 
     protected override void Chasing()
     {
+        Step();
+
         float direction = (int) (new Vector2(player.transform.position.x,0) - new Vector2(transform.position.x,0)).normalized.x;
+
+        transform.forward = new Vector3(0, 0, -direction);
 
         rb.velocity = new Vector2(direction * speed, rb.velocity.y);
     }
@@ -44,5 +53,20 @@ public class WalkingEnemyScript : GeneralEnemyScript
     protected override void Attack()
     {
 
+    }
+
+    private void Step()
+    {
+        Debug.DrawRay(footHeight.transform.position, -transform.right, Color.red, stepRayLength);
+
+        if (Physics2D.Raycast(footHeight.transform.position, -transform.right, stepRayLength, stepLayerMask))
+        {
+            Debug.Log("Obstacle detected");
+            if(!Physics2D.Raycast(kneeHeight.transform.position, -transform.right, stepRayLength, stepLayerMask))
+            {
+                Debug.Log("Step");
+                rb.MovePosition(new Vector2(transform.position.x + (stepHeight * moveDirection),transform.position.y + stepHeight));
+            }
+        }
     }
 }

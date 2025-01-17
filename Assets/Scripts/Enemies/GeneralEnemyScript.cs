@@ -12,24 +12,25 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
         Chasing,
         Attack
     }
-
-    private States state = States.Roaming;
-
-    protected GameObject player;
-
+    [Header("States")]
+    [SerializeField] private States state = States.Roaming;
     [SerializeField] protected GameObject roamPoint;
     [SerializeField] protected float roamMaxDist;
     protected bool m_OutsideRoam;
-
+    
+    [Header("Detection")]
     [SerializeField] private float detectionRange;
     [SerializeField] private LayerMask detectionLayerMask;
-
     [SerializeField] private float attackRange;
-
+    protected GameObject player;
+    
+    [Header("Atributes")]
     [SerializeField] private float health;
     [SerializeField] private float value;
 
+    //-1 = left, 1 = right
     [SerializeField] protected int moveDirection;
+
 
     private Animator animator;
 
@@ -53,7 +54,6 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
 
             case States.Chasing:
                 Chasing();
-
                 if (PlayerDetection(attackRange))
                 {
                     state = States.Attack;
