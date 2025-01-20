@@ -6,7 +6,8 @@ public class WalkingEnemyScript : GeneralEnemyScript
 {
     private Rigidbody2D rb;
 
-    [SerializeField] private float speed;
+    [SerializeField] protected float speed;
+    public bool canMove = true;
 
     [SerializeField] private GameObject footHeight;
     [SerializeField] private GameObject kneeHeight;
@@ -23,6 +24,7 @@ public class WalkingEnemyScript : GeneralEnemyScript
     protected override void Roaming()
     {
         Step();
+
         if (Vector2.Distance(transform.position, roamPoint.transform.position) >= roamMaxDist)
         {
             if (!m_OutsideRoam)
@@ -36,23 +38,31 @@ public class WalkingEnemyScript : GeneralEnemyScript
 
 
         transform.forward = new Vector3(0, 0, -moveDirection);
-        rb.velocity = new Vector2(moveDirection * speed, rb.velocity.y);
+
+        if (canMove)
+            rb.velocity = new Vector2(moveDirection * speed, rb.velocity.y);
     }
 
     protected override void Chasing()
     {
         Step();
 
-        float direction = (int) (new Vector2(player.transform.position.x,0) - new Vector2(transform.position.x,0)).normalized.x;
+        float direction = moveDirection;
+        if (player != null)
+        {
+            direction = (int)(new Vector2(player.transform.position.x, 0) - new Vector2(transform.position.x, 0)).normalized.x;
+        }
+
 
         transform.forward = new Vector3(0, 0, -direction);
 
-        rb.velocity = new Vector2(direction * speed, rb.velocity.y);
+        if (canMove)
+            rb.velocity = new Vector2(direction * speed, rb.velocity.y);
     }
 
     protected override void Attack()
     {
-
+        rb.velocity = Vector2.zero;
     }
 
     private void Step()
@@ -62,10 +72,10 @@ public class WalkingEnemyScript : GeneralEnemyScript
         if (Physics2D.Raycast(footHeight.transform.position, -transform.right, stepRayLength, stepLayerMask))
         {
             Debug.Log("Obstacle detected");
-            if(!Physics2D.Raycast(kneeHeight.transform.position, -transform.right, stepRayLength, stepLayerMask))
+            if (!Physics2D.Raycast(kneeHeight.transform.position, -transform.right, stepRayLength, stepLayerMask))
             {
                 Debug.Log("Step");
-                rb.MovePosition(new Vector2(transform.position.x + (stepHeight * moveDirection),transform.position.y + stepHeight));
+                rb.MovePosition(new Vector2(transform.position.x, transform.position.y + stepHeight));
             }
         }
     }

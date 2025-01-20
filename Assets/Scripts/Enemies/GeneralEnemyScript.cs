@@ -20,7 +20,7 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
     
     [Header("Detection")]
     [SerializeField] private float detectionRange;
-    [SerializeField] private LayerMask detectionLayerMask;
+    [SerializeField] protected LayerMask detectionLayerMask;
     [SerializeField] private float attackRange;
     protected GameObject player;
     
@@ -32,14 +32,14 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
     [SerializeField] protected int moveDirection;
 
 
-    private Animator animator;
+    protected Animator animator;
 
     protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    protected void Update()
     {
         switch (state)
         {
@@ -78,7 +78,7 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
         }
     }
 
-    private bool PlayerDetection(float range)
+    protected bool PlayerDetection(float range)
     {
         Collider2D playerDetect = Physics2D.OverlapCircle(transform.position, range, detectionLayerMask);
         if (playerDetect != null)
@@ -105,17 +105,23 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
 
     protected virtual void Attack()
     {
-
+        
     }
 
     public void TakeDamage(int amount)
     {
+        health--;
         if (health > 0)
         {
             animator.SetTrigger("Hurt");
         } else
         {
-            animator.SetTrigger("Death");
+            animator.SetTrigger("Die");
         }
+    }
+
+    public void OnDeath()
+    {
+        Destroy(gameObject);
     }
 }

@@ -4,6 +4,7 @@ using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour, IDamagabele
 {
@@ -11,7 +12,7 @@ public class PlayerScript : MonoBehaviour, IDamagabele
     [SerializeField] private int health;
     [SerializeField] private int imunityDuration;
     private bool canTakeDmg = true;
-    [SerializeField] private List<GameObject> hearts = new List<GameObject>();
+    [SerializeField] private Slider healthBar;
     #endregion
 
     #region Movement
@@ -31,6 +32,9 @@ public class PlayerScript : MonoBehaviour, IDamagabele
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        healthBar.maxValue = health;
+        healthBar.value = health;
     }
     public void TakeDamage(int amount)
     {
@@ -53,6 +57,11 @@ public class PlayerScript : MonoBehaviour, IDamagabele
 
             StartCoroutine(ImunityTimer());
         }
+    }
+
+    public void OnDeath()
+    {
+
     }
 
     private IEnumerator ImunityTimer()
@@ -117,7 +126,7 @@ public class PlayerScript : MonoBehaviour, IDamagabele
                 {
                     //Resting the animtor and check radius
                     animator.SetInteger("Jumps", 0);
-                    groundCheckRadius = 1;
+                    groundCheckRadius = 1f;
                 }
 
             }
@@ -185,16 +194,6 @@ public class PlayerScript : MonoBehaviour, IDamagabele
     //Changing the UI elements equal to the player healths
     public void ChangeHealthUI()
     {
-        //Setting all the heart UI on off
-        for (int i = 0; i < hearts.Count; i++)
-        {
-            hearts[i].SetActive(false);
-        }
-
-        //Setting all the hearts equal to the health on
-        for (int i = 0; i < health; i++)
-        {
-            hearts[i].SetActive(true);
-        }
+        healthBar.value = health;
     }
 }
