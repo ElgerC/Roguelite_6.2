@@ -17,13 +17,13 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
     [SerializeField] protected GameObject roamPoint;
     [SerializeField] protected float roamMaxDist;
     protected bool m_OutsideRoam;
-    
+
     [Header("Detection")]
     [SerializeField] private float detectionRange;
     [SerializeField] protected LayerMask detectionLayerMask;
     [SerializeField] private float attackRange;
-    protected GameObject player;
-    
+    [SerializeField] protected GameObject player;
+
     [Header("Atributes")]
     [SerializeField] private float health;
     [SerializeField] private float value;
@@ -54,16 +54,13 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
 
             case States.Chasing:
                 Chasing();
+
                 if (PlayerDetection(attackRange))
                 {
                     state = States.Attack;
-                }
-                else if (!PlayerDetection(detectionRange))
+                } else
                 {
-                    int direction = (int)(new Vector2(roamPoint.transform.position.x, 0) - new Vector2(transform.position.x, 0)).normalized.x;
-                    moveDirection = direction;
-                    m_OutsideRoam = true;
-                    state = States.Roaming;
+                    ChasingCheck();
                 }
                 break;
 
@@ -78,7 +75,7 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
         }
     }
 
-    protected bool PlayerDetection(float range)
+    protected virtual bool PlayerDetection(float range)
     {
         Collider2D playerDetect = Physics2D.OverlapCircle(transform.position, range, detectionLayerMask);
         if (playerDetect != null)
@@ -98,6 +95,16 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
 
     }
 
+    protected virtual void ChasingCheck()
+    {
+        if (!PlayerDetection(detectionRange))
+        {
+            int direction = (int)(new Vector2(roamPoint.transform.position.x, 0) - new Vector2(transform.position.x, 0)).normalized.x;
+            moveDirection = direction;
+            m_OutsideRoam = true;
+            state = States.Roaming;
+        }
+    }
     protected virtual void Chasing()
     {
 
@@ -105,16 +112,17 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
 
     protected virtual void Attack()
     {
-        
+
     }
 
     public void TakeDamage(int amount)
     {
-        health--;
+        health -= amount;
         if (health > 0)
         {
             animator.SetTrigger("Hurt");
-        } else
+        }
+        else
         {
             animator.SetTrigger("Die");
         }
