@@ -26,10 +26,10 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
 
     [Header("Atributes")]
     [SerializeField] private float health;
-    [SerializeField] private float value;
+    public int value;
 
     //-1 = left, 1 = right
-    [SerializeField] protected int moveDirection;
+    public int moveDirection;
 
 
     protected Animator animator;
