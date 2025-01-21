@@ -14,7 +14,7 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
     }
     [Header("States")]
     [SerializeField] private States state = States.Roaming;
-    [SerializeField] protected GameObject roamPoint;
+    public GameObject roamPoint;
     [SerializeField] protected float roamMaxDist;
     protected bool m_OutsideRoam;
 
