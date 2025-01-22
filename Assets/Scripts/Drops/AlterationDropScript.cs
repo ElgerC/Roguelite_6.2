@@ -6,7 +6,9 @@ public class AlterationDropScript : MonoBehaviour, IDropable
 {
     void IDropable.OnCollect()
     {
-        InventoryScript.instance.AddItem();
+        SpellStats alteration = DropManager.instance.GenerateAlteration();
+
+        InventoryScript.instance.AddItem(alteration);
         Destroy(gameObject);
     }
 }

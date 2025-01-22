@@ -14,6 +14,8 @@ public class Drag : MonoBehaviour
 
     private Transform savedTransform;
 
+    public SpellStats alteration;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -47,8 +49,14 @@ public class Drag : MonoBehaviour
         for (int i = 0; i < inventoryScript.spellSlots.Count; i++)
         {
             GameObject curSlot = inventoryScript.spellSlots[i];
-            if (Vector2.Distance(transform.position, curSlot.transform.position) < 30 && curSlot.transform.childCount == 0)
+            if (Vector2.Distance(transform.position, curSlot.transform.position) < 30)
             {
+                if(curSlot.transform.childCount != 0)
+                {
+                    Destroy(curSlot.transform.GetChild(0).gameObject);
+                }
+
+                FindObjectOfType<SpellController>().alterationOptions[curSlot.transform.parent.GetComponent<UISpell>().spell].Add(alteration);
                 transform.parent = inventoryScript.spellSlots[i].transform;
             }
         }
@@ -63,5 +71,10 @@ public class Drag : MonoBehaviour
     public void Grab()
     {
         savedTransform = transform.parent;
+    }
+
+    private void OnDestroy()
+    {
+        FindObjectOfType<SpellController>().alterationOptions[transform.parent.transform.parent.GetComponent<UISpell>().spell].Remove(alteration);
     }
 }

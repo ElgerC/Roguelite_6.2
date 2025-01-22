@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -21,16 +22,12 @@ public class PlayerScript : MonoBehaviour, IDamagabele
     [SerializeField] private float movementSpeed;
     [SerializeField] private float attackingMovementSpeed;
 
+    private bool slowed = false;
+
     //Jump
     [SerializeField] private float jumpHeight;
     [SerializeField] private LayerMask groundCheckLayerMask;
     [SerializeField] private float groundCheckRadius;
-    #endregion
-
-    #region Spells
-
-    [SerializeField] private List<GameObject> spells = new List<GameObject>();
-
     #endregion
 
     [SerializeField] private Animator animator;
@@ -143,7 +140,7 @@ public class PlayerScript : MonoBehaviour, IDamagabele
     {
         //converting the movement to the right speed
         Vector2 move;
-        if (animator.GetBool("IsAttacking"))
+        if (slowed)
         {
             move = new Vector2(movementInput.x, 0).normalized * attackingMovementSpeed;
         }
@@ -171,46 +168,17 @@ public class PlayerScript : MonoBehaviour, IDamagabele
         if (context.performed)
         {
             animator.SetBool("IsAttacking", true);
+            slowed = true;
         }
         //On release the player stops attacking
         if (context.canceled)
         {
             animator.SetBool("IsAttacking", false);
+            slowed = false;
         }
     }
 
-    //On press starting the "Cast" animation
-    public void Cast1(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            Cast(spells[0]);
-        }
-        
-    }
 
-    public void Cast2(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            Cast(spells[1]);
-        }
-
-    }
-
-    public void Cast3(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            Cast(spells[2]);
-        }
-
-    }
-
-    private void Cast(GameObject spell)
-    {
-        animator.SetTrigger("Cast");
-    }
 
     //Checking if the player ended the attack and stopping the animation if they did
     public void AttackCheck()

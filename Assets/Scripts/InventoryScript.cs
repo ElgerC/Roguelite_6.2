@@ -41,10 +41,12 @@ public class InventoryScript : MonoBehaviour
 
     
 
-    public void AddItem()
+    public void AddItem(SpellStats alteration)
     {
         Transform curSlot = inventorySlots[storedItems].transform;
-        Instantiate(AlterationUI, curSlot);
+        GameObject go = Instantiate(AlterationUI, curSlot);
+
+        go.GetComponent<Drag>().alteration = alteration;
     }
     public void Sort()
     {
