@@ -13,12 +13,15 @@ public class SpawnPoint : MonoBehaviour
     [SerializeField] private float spawnCheckDiamater;
     [SerializeField] private LayerMask spawnCheckMask;
 
+    private int loops = 0;
+
     private void Start()
     {
         enemies.Sort((left,right) => left.GetComponent<GeneralEnemyScript>().value.CompareTo(right.GetComponent<GeneralEnemyScript>().value));
 
-        while (totalValue > 0)
+        while (totalValue > 0 && loops < 100)
         {
+            loops++;
             GameObject curEnemy;
 
             if(totalValue > enemies.Count)

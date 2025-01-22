@@ -27,6 +27,12 @@ public class PlayerScript : MonoBehaviour, IDamagabele
     [SerializeField] private float groundCheckRadius;
     #endregion
 
+    #region Spells
+
+    [SerializeField] private List<GameObject> spells = new List<GameObject>();
+
+    #endregion
+
     [SerializeField] private Animator animator;
 
     private void Awake()
@@ -174,12 +180,36 @@ public class PlayerScript : MonoBehaviour, IDamagabele
     }
 
     //On press starting the "Cast" animation
-    public void Cast(InputAction.CallbackContext context)
+    public void Cast1(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            animator.SetTrigger("Cast");
+            Cast(spells[0]);
         }
+        
+    }
+
+    public void Cast2(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Cast(spells[1]);
+        }
+
+    }
+
+    public void Cast3(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Cast(spells[2]);
+        }
+
+    }
+
+    private void Cast(GameObject spell)
+    {
+        animator.SetTrigger("Cast");
     }
 
     //Checking if the player ended the attack and stopping the animation if they did

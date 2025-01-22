@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3128906795506025370}
+  - component: {fileID: 1641404801840577744}
   - component: {fileID: 5080539069464388505}
   m_Layer: 0
   m_Name: RoamPoint
@@ -26,12 +27,38 @@ Transform:
   m_GameObject: {fileID: 4470723723726037510}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.028754, y: -3.41, z: 0}
+  m_LocalPosition: {x: -7, y: -5.82, z: 0}
   m_LocalScale: {x: 0.43, y: 2.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1641404801840577744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4470723723726037510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a901091571432c4eaff846f2b12ee75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 1214324756745251567, guid: 2292a0d41c385bf4b9b31219adce5083, type: 3}
+  - {fileID: 8955358421220367913, guid: fe0aa05cc9ac3094386f2e9eb3de6073, type: 3}
+  - {fileID: 6155150815945940315, guid: db1420edd7e365f4abc8f11b06733916, type: 3}
+  - {fileID: 6706929183465744807, guid: 1a24678410108624696b18f40f576092, type: 3}
+  - {fileID: 7208215967612368615, guid: c668752968378644da25a4bdc5b37911, type: 3}
+  totalValue: 12
+  maxSpawnDistanceX: 4
+  maxSpawnDistanceYTop: 4
+  maxSpawnDistanceYBot: -1
+  spawnCheckDiamater: 1.5
+  spawnCheckMask:
+    serializedVersion: 2
+    m_Bits: 1303
 --- !u!212 &5080539069464388505
 SpriteRenderer:
   m_ObjectHideFlags: 0
