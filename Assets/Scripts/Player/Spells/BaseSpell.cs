@@ -38,4 +38,9 @@ public abstract class BaseSpell : MonoBehaviour
         selfDamage += curAlt.selfDamage;
         manaCost += curAlt.manaCost;
     }
+
+    public virtual void Release()
+    {
+
+    }
 }

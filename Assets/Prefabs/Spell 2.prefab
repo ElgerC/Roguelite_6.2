@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3626561067911480928}
+  - component: {fileID: 3789842485120902826}
   - component: {fileID: 9015405434079247729}
   - component: {fileID: 1710386360228938948}
   - component: {fileID: 3615354255863652939}
@@ -34,6 +35,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3789842485120902826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6359793474280938082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6daf789e050fc7e48ac338f641507ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseStats: {fileID: 11400000, guid: c49229745862c7541a72ff8f2384d0c8, type: 2}
+  alterations: []
+  damage: 0
+  chargeTime: 0
+  range: 0
+  projectileSize: 0
+  projectileSpeed: 0
+  projectiles: 0
+  selfDamage: 0
+  manaCost: 0
+  damageLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!33 &9015405434079247729
 MeshFilter:
   m_ObjectHideFlags: 0

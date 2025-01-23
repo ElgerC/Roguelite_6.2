@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BaseStats
   m_EditorClassIdentifier: 
   damage: 1
-  chargeTime: 0
+  chargeTime: 1
   range: 10
   projectileSize: 5
   projectileSpeed: 9
