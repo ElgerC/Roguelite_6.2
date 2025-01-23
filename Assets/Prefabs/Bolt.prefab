@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1710386360228938948}
   - component: {fileID: 3615354255863652939}
   m_Layer: 0
-  m_Name: Spell 2
+  m_Name: Bolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,14 +49,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStats: {fileID: 11400000, guid: c49229745862c7541a72ff8f2384d0c8, type: 2}
   alterations: []
-  damage: 0
-  chargeTime: 0
-  range: 0
-  projectileSize: 0
-  projectileSpeed: 0
-  projectiles: 0
-  selfDamage: 0
-  manaCost: 0
+  damageMult: 1
+  chargeTimeMult: 2
+  rangeMult: 1
+  projectileSizeMult: 1
+  projectileSpeedMult: 1
+  projectilesMult: 1
+  selfDamageMult: 1
+  manaCostMult: 1
+  playerScript: {fileID: 0}
   damageLayerMask:
     serializedVersion: 2
     m_Bits: 256

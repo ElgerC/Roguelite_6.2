@@ -6,20 +6,21 @@ using UnityEngine.EventSystems;
 
 public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
 {
-    private enum States
+    public enum States
     {
         Roaming,
         Chasing,
-        Attack
+        Attack,
+        Inair
     }
     [Header("States")]
-    [SerializeField] private States state = States.Roaming;
+    public States state = States.Roaming;
     public GameObject roamPoint;
     [SerializeField] protected float roamMaxDist;
     protected bool m_OutsideRoam;
 
     [Header("Detection")]
-    [SerializeField] private float detectionRange;
+    [SerializeField] protected float detectionRange;
     [SerializeField] protected LayerMask detectionLayerMask;
     [SerializeField] private float attackRange;
     [SerializeField] protected GameObject player;
@@ -31,12 +32,15 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
     //-1 = left, 1 = right
     public int moveDirection;
 
-
+    protected Rigidbody2D rb;
     protected Animator animator;
+    private BoxCollider2D col;
 
     protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<BoxCollider2D>();
     }
 
     protected void Update()
@@ -58,7 +62,8 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
                 if (PlayerDetection(attackRange))
                 {
                     state = States.Attack;
-                } else
+                }
+                else
                 {
                     ChasingCheck();
                 }
@@ -70,6 +75,12 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
                 if (!PlayerDetection(attackRange))
                 {
                     state = States.Chasing;
+                }
+                break;
+            case States.Inair:
+                if(rb.velocity.x < 6)
+                {
+                    ChasingCheck();
                 }
                 break;
         }
@@ -124,6 +135,7 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
         }
         else
         {
+            col.enabled = false;
             animator.SetTrigger("Die");
         }
     }

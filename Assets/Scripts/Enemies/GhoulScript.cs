@@ -14,7 +14,19 @@ public class GhoulScript : WalkingEnemyScript
     [SerializeField] private GameObject explosion;
     protected override void ChasingCheck()
     {
-
+        if(state == States.Inair)
+        {
+            if (!PlayerDetection(detectionRange))
+            {
+                int direction = (int)(new Vector2(roamPoint.transform.position.x, 0) - new Vector2(transform.position.x, 0)).normalized.x;
+                moveDirection = direction;
+                m_OutsideRoam = true;
+                state = States.Roaming;
+            } else
+            {
+                state = States.Chasing;
+            }
+        }
     }
 
     protected override bool PlayerDetection(float range)

@@ -17,6 +17,7 @@ public class SpellController : MonoBehaviour
     [SerializeField] private bool buttonHeld;
 
     private Animator animator;
+    private PlayerScript playerScript;
 
     public List<SpellStats> alterationsSpell1 = new List<SpellStats>();
     public List<SpellStats> alterationsSpell2 = new List<SpellStats>();
@@ -28,6 +29,7 @@ public class SpellController : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        playerScript = gameObject.GetComponent<PlayerScript>();
 
         alterationOptions.Add(alterationsSpell1);
         alterationOptions.Add(alterationsSpell2);
@@ -107,7 +109,9 @@ public class SpellController : MonoBehaviour
         if (chosenSpell)
         {
             currentSpell = Instantiate(chosenSpell, castPoint.position, transform.rotation);
+
             currentSpell.GetComponent<BaseSpell>().alterations = currentAlterations;
+            currentSpell.GetComponent<BaseSpell>().playerScript = playerScript;
         }
     }
 

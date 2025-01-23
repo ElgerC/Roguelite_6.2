@@ -8,14 +8,26 @@ public abstract class BaseSpell : MonoBehaviour
 
     public List<SpellStats> alterations = new List<SpellStats>();
 
-    [SerializeField] protected float damage;
-    [SerializeField] protected float chargeTime;
-    [SerializeField] protected float range;
-    [SerializeField] protected float projectileSize;
-    [SerializeField] protected float projectileSpeed;
-    [SerializeField] protected float projectiles;
-    [SerializeField] protected float selfDamage;
-    [SerializeField] protected float manaCost;
+    [SerializeField] private float damageMult;
+    [SerializeField] private float chargeTimeMult;
+    [SerializeField] private float rangeMult;
+    [SerializeField] private float projectileSizeMult;
+    [SerializeField] private float projectileSpeedMult;
+    [SerializeField] private float projectilesMult;
+    [SerializeField] private float selfDamageMult;
+    [SerializeField] private float manaCostMult;
+
+
+    protected float damage;
+    protected float chargeTime;
+    protected float range;
+    protected float projectileSize;
+    protected float projectileSpeed;
+    protected float projectiles;
+    protected float selfDamage;
+    protected float manaCost;
+
+    public PlayerScript playerScript;
 
     protected virtual void Start()
     {
@@ -25,6 +37,8 @@ public abstract class BaseSpell : MonoBehaviour
         {
             ApplyAlteration(alterations[i]);
         }
+
+        MultAplication();
     }
 
     public void ApplyAlteration(SpellStats curAlt)
@@ -39,6 +53,17 @@ public abstract class BaseSpell : MonoBehaviour
         manaCost += curAlt.manaCost;
     }
 
+    private void MultAplication()
+    {
+        damage *= damageMult;
+        chargeTime *= chargeTimeMult;
+        range *= rangeMult;
+        projectileSize *= projectileSizeMult;
+        projectileSpeed *= projectileSpeedMult;
+        projectiles *= projectilesMult;
+        selfDamage *= selfDamageMult;
+        manaCost *= manaCostMult;
+    }
     public virtual void Release()
     {
 

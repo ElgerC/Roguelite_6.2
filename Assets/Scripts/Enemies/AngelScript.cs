@@ -22,14 +22,11 @@ public class AngelScript : GeneralEnemyScript
     [SerializeField] private int flyDirection = -1;
     [SerializeField] private float flySpeed;
 
-    private Rigidbody2D rb;
-
     [SerializeField] private List<GameObject> enemies = new List<GameObject>();
     
     protected override void Awake()
     {
         base.Awake();
-        rb = GetComponent<Rigidbody2D>();
     }
     private void Start()
     {

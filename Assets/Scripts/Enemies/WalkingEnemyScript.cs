@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WalkingEnemyScript : GeneralEnemyScript
 {
-    private Rigidbody2D rb;
 
     [SerializeField] protected float speed;
     public bool canMove = true;
@@ -18,7 +17,6 @@ public class WalkingEnemyScript : GeneralEnemyScript
     protected override void Awake()
     {
         base.Awake();
-        rb = GetComponent<Rigidbody2D>();
         m_OutsideRoam = false;
     }
     protected override void Roaming()
