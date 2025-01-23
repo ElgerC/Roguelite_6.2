@@ -11,10 +11,10 @@ public class SpellController : MonoBehaviour
     [SerializeField] private List<GameObject> spells = new List<GameObject>();
 
     private GameObject chosenSpell;
-    private GameObject currentSpell;
+    [SerializeField] private GameObject currentSpell;
 
     [SerializeField] private Transform castPoint;
-    private bool buttonHeld;
+    [SerializeField] private bool buttonHeld;
 
     private Animator animator;
 
@@ -99,9 +99,7 @@ public class SpellController : MonoBehaviour
     }
     public void StartChannel()
     {
-        Debug.Log("StartingChannel");
-
-        if(buttonHeld)
+        if (buttonHeld)
         {
             animator.SetBool("Channeling", true);
         }
@@ -116,8 +114,8 @@ public class SpellController : MonoBehaviour
     public void EndChannel()
     {
         buttonHeld = false;
-        
-        animator.SetBool("Channeling", false);
+
+
     }
 
     public void Release()
@@ -128,6 +126,8 @@ public class SpellController : MonoBehaviour
 
             currentSpell = null;
             chosenSpell = null;
+
+            animator.SetBool("Channeling", false);
         }
     }
 }
