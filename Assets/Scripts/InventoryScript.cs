@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class InventoryScript : MonoBehaviour
@@ -15,6 +16,9 @@ public class InventoryScript : MonoBehaviour
 
     [SerializeField] private GameObject AlterationUI;
     [SerializeField] private GameObject UIElements;
+
+    public UnityEvent OnPause;
+
     private void Awake()
     {
         if (instance == null)
@@ -26,8 +30,10 @@ public class InventoryScript : MonoBehaviour
     {
         if (ctx.performed)
         {
-
             UIElements.SetActive(!UIElements.activeSelf);
+
+            OnPause.Invoke();
+
             if (UIElements.activeSelf)
             {
                 Time.timeScale = 0f;
@@ -43,6 +49,8 @@ public class InventoryScript : MonoBehaviour
 
     public void AddItem(SpellStats alteration)
     {
+
+
         Transform curSlot = inventorySlots[storedItems].transform;
         GameObject go = Instantiate(AlterationUI, curSlot);
 

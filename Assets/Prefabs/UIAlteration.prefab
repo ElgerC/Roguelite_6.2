@@ -138,6 +138,38 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8465713812887115494}
+          m_TargetAssemblyTypeName: Drag, Assembly-CSharp
+          m_MethodName: ShowStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8465713812887115494}
+          m_TargetAssemblyTypeName: Drag, Assembly-CSharp
+          m_MethodName: HideStats
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &8465713812887115494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,3 +184,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   linkedPosition: {x: 0, y: 0}
+  alteration: {fileID: 0}
+  alterationNames:
+  - Damage
+  - Charge time
+  - Range
+  - Size
+  - Speed
+  - Projectiles
+  - Self infliction
+  - Mana cost
+  hoverText: {fileID: 5616188122526412671, guid: 688bea74bb82632408538b447a899ef0, type: 3}
+  curHoverText: {fileID: 0}
