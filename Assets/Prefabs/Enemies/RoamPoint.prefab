@@ -58,7 +58,7 @@ MonoBehaviour:
   spawnCheckDiamater: 1.5
   spawnCheckMask:
     serializedVersion: 2
-    m_Bits: 1303
+    m_Bits: 1047
 --- !u!212 &5080539069464388505
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -99,7 +99,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 7
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.99371064, g: 0.41560844, b: 0.41560844, a: 1}
   m_FlipX: 0

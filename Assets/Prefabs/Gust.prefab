@@ -55,7 +55,7 @@ MonoBehaviour:
   projectileSizeMult: 2
   projectileSpeedMult: 2
   projectilesMult: 1
-  selfDamageMult: 1
+  selfDamageMult: 200
   manaCostMult: 1
   damage: 0
   chargeTime: 0

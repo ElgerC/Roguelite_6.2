@@ -13,7 +13,7 @@ public class PlayerScript : MonoBehaviour, IDamagabele
     [SerializeField] private int health;
     [SerializeField] private int maxHealth;
     [SerializeField] private int imunityDuration;
-    private bool canTakeDmg = true;
+    [SerializeField] private bool canTakeDmg = true;
     [SerializeField] private Slider healthBar;
     #endregion
 
@@ -24,6 +24,8 @@ public class PlayerScript : MonoBehaviour, IDamagabele
     [SerializeField] private float attackingMovementSpeed;
 
     private bool slowed = false;
+
+    public bool launched = false;
 
     //Jump
     [SerializeField] private float jumpHeight;
@@ -46,15 +48,13 @@ public class PlayerScript : MonoBehaviour, IDamagabele
         //Player can only be damaged if the bool is true
         if (canTakeDmg)
         {
-            if (health < maxHealth)
-                if (amount < -3)
-                {
-                    health -= 3;
-                }
-                else
-                {
-                    health -= amount;
-                }
+            if(amount < 0 && (maxHealth - health) > -amount)
+            {
+                health -= maxHealth - health;
+            } else
+            {
+                health -= amount;
+            }
 
             if (amount > 0)
             {
@@ -68,10 +68,9 @@ public class PlayerScript : MonoBehaviour, IDamagabele
                     animator.SetTrigger("Die");
                 }
 
-                ChangeHealthUI();
-
                 StartCoroutine(ImunityTimer());
             }
+            ChangeHealthUI();
         }
     }
 
@@ -161,16 +160,26 @@ public class PlayerScript : MonoBehaviour, IDamagabele
         {
             move = new Vector2(movementInput.x, 0).normalized * movementSpeed;
         }
-        rb.velocity = new Vector2(move.x, rb.velocity.y);
 
-        //Setting the animator speed to the absolute* of the movement *(1 = 1 ,-1 = 1)
-        animator.SetFloat("Speed", Mathf.Abs(movementInput.x));
+        if (launched)
+        {
+            if (Mathf.Abs(rb.velocity.x) < 4)
+                launched = false;
+        }
+        if (!launched)
+        {
+            rb.velocity = new Vector2(move.x, rb.velocity.y);
 
-        //Rotating the player to look in the right direction
-        if (movementInput.x > 0)
-            transform.forward = new Vector2(0, 0);
-        else if (movementInput.x < 0)
-            transform.forward = new Vector3(0, 0, -1);
+            //Setting the animator speed to the absolute* of the movement *(1 = 1 ,-1 = 1)
+            animator.SetFloat("Speed", Mathf.Abs(movementInput.x));
+
+            //Rotating the player to look in the right direction
+            if (movementInput.x > 0)
+                transform.forward = new Vector2(0, 0);
+            else if (movementInput.x < 0)
+                transform.forward = new Vector3(0, 0, -1);
+        }
+
 
         GroundCheck();
     }

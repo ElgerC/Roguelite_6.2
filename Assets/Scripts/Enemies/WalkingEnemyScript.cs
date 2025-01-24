@@ -21,8 +21,10 @@ public class WalkingEnemyScript : GeneralEnemyScript
     }
     protected override void Roaming()
     {
-        Step();
         if (gameObject)
+        {
+            Step();
+
             if (Vector2.Distance(transform.position, roamPoint.transform.position) >= roamMaxDist)
             {
                 if (!m_OutsideRoam)
@@ -35,10 +37,11 @@ public class WalkingEnemyScript : GeneralEnemyScript
                 m_OutsideRoam = false;
 
 
-        transform.forward = new Vector3(0, 0, -moveDirection);
+            transform.forward = new Vector3(0, 0, -moveDirection);
 
-        if (canMove)
-            rb.velocity = new Vector2(moveDirection * speed, rb.velocity.y);
+            if (canMove)
+                rb.velocity = new Vector2(moveDirection * speed, rb.velocity.y);
+        }
     }
 
     protected override void Chasing()

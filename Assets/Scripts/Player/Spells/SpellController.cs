@@ -28,7 +28,8 @@ public class SpellController : MonoBehaviour
 
     public float mana;
     public float maxMana;
-    public Slider manaSlider;
+    [SerializeField] private Slider manaSlider;
+    [SerializeField] private RectTransform sliderTransform;
 
     private void Awake()
     {
@@ -161,9 +162,10 @@ public class SpellController : MonoBehaviour
         {
             currentSpell.GetComponent<BaseSpell>().Release();
 
-            if (chosenSpell == spells[0])
+            if (chosenSpell == spells[2])
             {
-                rb.AddForce(new Vector2(transform.right.x * currentSpell.GetComponent<BaseSpell>().selfDamage, 0));
+                rb.AddForce(new Vector2(-transform.right.x * currentSpell.GetComponent<BaseSpell>().selfDamage, 0));
+                playerScript.launched = true;
             }
 
             currentSpell = null;
@@ -171,5 +173,14 @@ public class SpellController : MonoBehaviour
 
             animator.SetBool("Channeling", false);
         }
+    }
+
+    public void IncreaseMana(float amount)
+    {
+        maxMana += amount;
+        mana = maxMana;
+
+        sliderTransform.sizeDelta += new Vector2(amount / 5, 0);
+        sliderTransform.position += new Vector3(amount/4, 0);  
     }
 }

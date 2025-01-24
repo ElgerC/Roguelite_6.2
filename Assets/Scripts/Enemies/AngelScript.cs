@@ -116,7 +116,7 @@ public class AngelScript : GeneralEnemyScript
         int choice = Random.Range(0, enemies.Count - 1);
 
         GameObject go = Instantiate(enemies[choice],attackPoint.transform.position,Quaternion.identity);
-        go.GetComponent<GeneralEnemyScript>().roamPoint = gameObject;
+        go.GetComponent<GeneralEnemyScript>().roamPoint = roamPoint;
     }
     private IEnumerator AtkCooldown()
     {
@@ -127,7 +127,7 @@ public class AngelScript : GeneralEnemyScript
 
     public override void OnDeath()
     {
-        GameManager.instance.curRunes++;
+        GameManager.instance.AddRune();
 
         base.OnDeath();
     }

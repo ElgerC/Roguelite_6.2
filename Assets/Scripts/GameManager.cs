@@ -26,6 +26,12 @@ public class GameManager : MonoBehaviour
 
     public void AddRune()
     {
+        curRunes++;
+        if(levelIndex > levels.Count)
+        {
+            SceneManager.LoadScene("EndScene");
+        }
+
         if(curRunes == maxRunes[levelIndex])
         {
             SceneManager.LoadScene(levels[levelIndex]);

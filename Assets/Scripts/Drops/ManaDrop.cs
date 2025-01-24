@@ -9,8 +9,7 @@ public class ManaDrop : MonoBehaviour, IDropable
     {
         SpellController spellController =  playerScript.GetComponent<SpellController>();
 
-        spellController.maxMana += amount;
-        spellController.mana = amount;
+        spellController.IncreaseMana(amount);
 
         Destroy(gameObject);
     }
