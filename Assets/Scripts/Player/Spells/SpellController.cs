@@ -126,6 +126,8 @@ public class SpellController : MonoBehaviour
 
             if (curSpelScript.manaCost <= mana)
             {
+                Debug.Log(curSpelScript.manaCost);
+
                 mana -= curSpelScript.manaCost;
                 manaSlider.value = mana;
 

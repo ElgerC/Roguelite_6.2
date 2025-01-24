@@ -11,6 +11,7 @@ public class GustScript : BaseSpell
     [SerializeField] private Sprite airSlash;
     protected override void Awake()
     {
+        base.Awake();
         rb = GetComponent<Rigidbody2D>();
         squareCol = GetComponent<BoxCollider2D>();
 
@@ -29,8 +30,6 @@ public class GustScript : BaseSpell
         animator.SetBool("Released", true);
 
         rb.velocity = transform.right * projectileSpeed;
-
-
 
         StartCoroutine(DestroyTimer());
     }
