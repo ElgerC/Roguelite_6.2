@@ -11,7 +11,8 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
         Roaming,
         Chasing,
         Attack,
-        Inair
+        Inair,
+        Dead
     }
     [Header("States")]
     public States state = States.Roaming;
@@ -29,6 +30,7 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
     [SerializeField] private float health;
     public int value;
 
+    [Header("Misc")]
     //-1 = left, 1 = right
     public int moveDirection;
 
@@ -36,11 +38,14 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
     protected Animator animator;
     private BoxCollider2D col;
 
+    private DropManager dropManager;
     protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
+
+        dropManager = DropManager.instance;
     }
 
     protected void Update()
@@ -82,6 +87,9 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
                 {
                     ChasingCheck();
                 }
+                break;
+            case States.Dead:
+                rb.velocity = Vector2.zero;
                 break;
         }
     }
@@ -126,7 +134,7 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
 
     }
 
-    public void TakeDamage(int amount)
+    public virtual void TakeDamage(int amount)
     {
         health -= amount;
         if (health > 0)
@@ -136,12 +144,23 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
         else
         {
             col.enabled = false;
+            state = States.Dead;
             animator.SetTrigger("Die");
         }
     }
-
-    public void OnDeath()
+    public virtual void OnDeath()
     {
+        SpawnDrop();
         Destroy(gameObject);
+    }
+
+    private void SpawnDrop()
+    {
+        GameObject drop = dropManager.GenerateDrop();
+
+        if (drop != null)
+        {
+            Instantiate(drop, transform.position, Quaternion.identity);
+        }
     }
 }

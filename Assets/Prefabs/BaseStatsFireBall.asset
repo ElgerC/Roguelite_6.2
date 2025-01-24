@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fc476fab899c194eb4ba621eef3d56c, type: 3}
-  m_Name: BaseStats
+  m_Name: BaseStatsFireBall
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
   chargeTime: 1
-  range: 10
-  projectileSize: 5
-  projectileSpeed: 9
+  range: 0.75
+  projectileSize: 2
+  projectileSpeed: 4
   projectiles: 1
   selfDamage: 0
   manaCost: 10

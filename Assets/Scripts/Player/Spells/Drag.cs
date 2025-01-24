@@ -75,6 +75,11 @@ public class Drag : MonoBehaviour
 
     private void OnDestroy()
     {
-        FindObjectOfType<SpellController>().alterationOptions[transform.parent.transform.parent.GetComponent<UISpell>().spell].Remove(alteration);
+        SpellController controler =  FindObjectOfType<SpellController>();
+
+        if( controler != null )
+        {
+            controler.alterationOptions[transform.parent.transform.parent.GetComponent<UISpell>().spell].Remove(alteration);
+        }
     }
 }

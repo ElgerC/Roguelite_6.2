@@ -6,15 +6,18 @@ public class GustScript : BaseSpell
 {
     private Rigidbody2D rb;
     private BoxCollider2D squareCol;
-    private void Awake()
+    private Animator animator;
+
+    [SerializeField] private Sprite airSlash;
+    protected override void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         squareCol = GetComponent<BoxCollider2D>();
-    }
-    protected override void Start()
-    {
-        base.Start();
 
+        animator = GetComponentInChildren<Animator>();
+    }
+    private void Start()
+    { 
         squareCol.enabled = false;
         transform.localScale = new Vector3(projectileSize, projectileSize, projectileSize);
     }
@@ -23,7 +26,11 @@ public class GustScript : BaseSpell
     {
         squareCol.enabled = true;
 
+        animator.SetBool("Released", true);
+
         rb.velocity = transform.right * projectileSpeed;
+
+
 
         StartCoroutine(DestroyTimer());
     }

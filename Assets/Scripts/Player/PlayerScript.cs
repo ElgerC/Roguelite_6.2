@@ -11,6 +11,7 @@ public class PlayerScript : MonoBehaviour, IDamagabele
 {
     #region Health
     [SerializeField] private int health;
+    [SerializeField] private int maxHealth;
     [SerializeField] private int imunityDuration;
     private bool canTakeDmg = true;
     [SerializeField] private Slider healthBar;
@@ -34,6 +35,7 @@ public class PlayerScript : MonoBehaviour, IDamagabele
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         rb = GetComponent<Rigidbody2D>();
 
         healthBar.maxValue = health;
@@ -44,21 +46,32 @@ public class PlayerScript : MonoBehaviour, IDamagabele
         //Player can only be damaged if the bool is true
         if (canTakeDmg)
         {
-            health -= amount;
+            if (health < maxHealth)
+                if (amount < -3)
+                {
+                    health -= 3;
+                }
+                else
+                {
+                    health -= amount;
+                }
 
-            //Checking if the player is still alive
-            if (health > 0)
+            if (amount > 0)
             {
-                animator.SetTrigger("Hurt");
-            }
-            else
-            {
-                animator.SetTrigger("Die");
-            }
+                //Checking if the player is still alive
+                if (health > 0)
+                {
+                    animator.SetTrigger("Hurt");
+                }
+                else
+                {
+                    animator.SetTrigger("Die");
+                }
 
-            ChangeHealthUI();
+                ChangeHealthUI();
 
-            StartCoroutine(ImunityTimer());
+                StartCoroutine(ImunityTimer());
+            }
         }
     }
 
@@ -82,7 +95,7 @@ public class PlayerScript : MonoBehaviour, IDamagabele
         //Check if there was a drop
         if (dropable != null)
         {
-            dropable.OnCollect();
+            dropable.OnCollect(this);
         }
     }
     public void OnMove(InputAction.CallbackContext ctx)

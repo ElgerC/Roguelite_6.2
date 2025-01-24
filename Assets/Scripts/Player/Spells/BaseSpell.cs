@@ -8,6 +8,7 @@ public abstract class BaseSpell : MonoBehaviour
 
     public List<SpellStats> alterations = new List<SpellStats>();
 
+    [Header("Multipliars")]
     [SerializeField] private float damageMult;
     [SerializeField] private float chargeTimeMult;
     [SerializeField] private float rangeMult;
@@ -17,19 +18,19 @@ public abstract class BaseSpell : MonoBehaviour
     [SerializeField] private float selfDamageMult;
     [SerializeField] private float manaCostMult;
 
-
-    protected float damage;
-    protected float chargeTime;
-    protected float range;
-    protected float projectileSize;
-    protected float projectileSpeed;
-    protected float projectiles;
-    protected float selfDamage;
-    protected float manaCost;
+    [Header("Stats")]
+    [SerializeField] protected float damage;
+    [SerializeField] protected float chargeTime;
+    [SerializeField] protected float range;
+    [SerializeField] protected float projectileSize;
+    [SerializeField] protected float projectileSpeed;
+    [SerializeField] protected float projectiles;
+    public float selfDamage;
+    public float manaCost;
 
     public PlayerScript playerScript;
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         ApplyAlteration(baseStats);
 
@@ -37,32 +38,18 @@ public abstract class BaseSpell : MonoBehaviour
         {
             ApplyAlteration(alterations[i]);
         }
-
-        MultAplication();
     }
 
     public void ApplyAlteration(SpellStats curAlt)
     {
-        damage += curAlt.damage;
-        chargeTime += curAlt.chargeTime;
-        range += curAlt.range;
-        projectileSize += curAlt.projectileSize;
-        projectileSpeed += curAlt.projectileSpeed;
-        projectiles += curAlt.projectiles;
-        selfDamage += curAlt.selfDamage;
-        manaCost += curAlt.manaCost;
-    }
-
-    private void MultAplication()
-    {
-        damage *= damageMult;
-        chargeTime *= chargeTimeMult;
-        range *= rangeMult;
-        projectileSize *= projectileSizeMult;
-        projectileSpeed *= projectileSpeedMult;
-        projectiles *= projectilesMult;
-        selfDamage *= selfDamageMult;
-        manaCost *= manaCostMult;
+        damage += curAlt.damage * damageMult;
+        chargeTime += curAlt.chargeTime * chargeTimeMult;
+        range += curAlt.range * rangeMult;
+        projectileSize += curAlt.projectileSize * projectileSizeMult;
+        projectileSpeed += curAlt.projectileSpeed * projectileSpeedMult;
+        projectiles += curAlt.projectiles * projectilesMult;
+        selfDamage += curAlt.selfDamage * selfDamageMult;
+        manaCost += curAlt.manaCost * manaCostMult;
     }
     public virtual void Release()
     {

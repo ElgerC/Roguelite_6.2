@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AlterationDropScript : MonoBehaviour, IDropable
 {
-    void IDropable.OnCollect()
+    void IDropable.OnCollect(PlayerScript playerScript)
     {
         SpellStats alteration = DropManager.instance.GenerateAlteration();
 

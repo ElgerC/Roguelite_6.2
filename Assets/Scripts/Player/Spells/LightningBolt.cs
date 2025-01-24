@@ -7,17 +7,17 @@ public class LightningBolt : BaseSpell
     [SerializeField] private LayerMask damageLayerMask;
 
     private float curRange = 0f;
-    protected override void Start()
-    {
-        base.Start();
 
+    [SerializeField] private GameObject attackPoint;
+    private void Start()
+    {
         StartCoroutine(RangeGrow());
     }
     public override void Release()
     {
         StopAllCoroutines();
 
-        Collider2D[] coliders = Physics2D.OverlapCircleAll(transform.position, curRange, damageLayerMask);
+        Collider2D[] coliders = Physics2D.OverlapCircleAll(attackPoint.transform.position, curRange, damageLayerMask);
 
         for (int i = 0; i < coliders.Length; i++)
         {
@@ -37,11 +37,18 @@ public class LightningBolt : BaseSpell
         for (int i = 0; i <= range*10; i++) 
         {
             curRange += range / (range * 10);
-            
+
+            attackPoint.transform.position += new Vector3(transform.right.x * (curRange/60), 0, 0);
+
             transform.localScale = new Vector3(curRange*2, curRange*2, curRange * 2);
 
             yield return new WaitForSeconds(range / (range * 10));
         }
         
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(attackPoint.transform.position,curRange);   
     }
 }

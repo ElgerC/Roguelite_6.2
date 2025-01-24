@@ -66,7 +66,10 @@ public class GhoulScript : WalkingEnemyScript
         
         Explode();
     }
-
+    public override void TakeDamage(int amount)
+    {
+        Explode();
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject == player)

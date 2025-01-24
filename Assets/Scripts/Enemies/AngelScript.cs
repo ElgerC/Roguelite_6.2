@@ -28,10 +28,6 @@ public class AngelScript : GeneralEnemyScript
     {
         base.Awake();
     }
-    private void Start()
-    {
-
-    }
     protected override void Roaming()
     {
         FlyCheck();
@@ -127,5 +123,12 @@ public class AngelScript : GeneralEnemyScript
         canAtk = false;
         yield return new WaitForSeconds(atkCd);    
         canAtk = true;
+    }
+
+    public override void OnDeath()
+    {
+        GameManager.instance.curRunes++;
+
+        base.OnDeath();
     }
 }

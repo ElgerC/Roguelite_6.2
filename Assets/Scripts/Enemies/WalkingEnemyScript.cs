@@ -22,17 +22,17 @@ public class WalkingEnemyScript : GeneralEnemyScript
     protected override void Roaming()
     {
         Step();
-
-        if (Vector2.Distance(transform.position, roamPoint.transform.position) >= roamMaxDist)
-        {
-            if (!m_OutsideRoam)
+        if (gameObject)
+            if (Vector2.Distance(transform.position, roamPoint.transform.position) >= roamMaxDist)
             {
-                m_OutsideRoam = true;
-                moveDirection = -moveDirection;
+                if (!m_OutsideRoam)
+                {
+                    m_OutsideRoam = true;
+                    moveDirection = -moveDirection;
+                }
             }
-        }
-        else
-            m_OutsideRoam = false;
+            else
+                m_OutsideRoam = false;
 
 
         transform.forward = new Vector3(0, 0, -moveDirection);
@@ -74,6 +74,10 @@ public class WalkingEnemyScript : GeneralEnemyScript
             {
                 Debug.Log("Step");
                 rb.MovePosition(new Vector2(transform.position.x, transform.position.y + stepHeight));
+            }
+            else
+            {
+                moveDirection = -moveDirection;
             }
         }
     }

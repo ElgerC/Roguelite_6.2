@@ -2,7 +2,7 @@ using UnityEngine;
 
 interface IDropable
 {
-    void OnCollect();
+    void OnCollect(PlayerScript playerScript);
 }
 
 
