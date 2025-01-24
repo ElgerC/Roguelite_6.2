@@ -899,7 +899,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: totalValue
-      value: 2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.size
@@ -912,7 +912,7 @@ PrefabInstance:
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[0]
       value: 
-      objectReference: {fileID: 6155150815945940315, guid: db1420edd7e365f4abc8f11b06733916, type: 3}
+      objectReference: {fileID: 8955358421220367913, guid: fe0aa05cc9ac3094386f2e9eb3de6073, type: 3}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[1]
       value: 
@@ -973,6 +973,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoamPoint (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5080539069464388505, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -988,7 +992,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: totalValue
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.size
@@ -1001,11 +1005,11 @@ PrefabInstance:
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[0]
       value: 
-      objectReference: {fileID: 6155150815945940315, guid: db1420edd7e365f4abc8f11b06733916, type: 3}
+      objectReference: {fileID: 6706929183465744807, guid: 1a24678410108624696b18f40f576092, type: 3}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[1]
       value: 
-      objectReference: {fileID: 6706929183465744807, guid: 1a24678410108624696b18f40f576092, type: 3}
+      objectReference: {fileID: 6155150815945940315, guid: db1420edd7e365f4abc8f11b06733916, type: 3}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[2]
       value: 
@@ -1061,6 +1065,10 @@ PrefabInstance:
     - target: {fileID: 4470723723726037510, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: m_Name
       value: RoamPoint (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080539069464388505, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1152,11 +1160,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: totalValue
-      value: 2
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: spawnCheckDiamater
@@ -1165,7 +1173,7 @@ PrefabInstance:
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[0]
       value: 
-      objectReference: {fileID: 6155150815945940315, guid: db1420edd7e365f4abc8f11b06733916, type: 3}
+      objectReference: {fileID: 8955358421220367913, guid: fe0aa05cc9ac3094386f2e9eb3de6073, type: 3}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[1]
       value: 
@@ -1225,6 +1233,10 @@ PrefabInstance:
     - target: {fileID: 4470723723726037510, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: m_Name
       value: RoamPoint (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080539069464388505, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1635,6 +1647,104 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 529549463}
   m_CullTransparentMesh: 1
+--- !u!1001 &536507959
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1052668532}
+    m_Modifications:
+    - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: totalValue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: enemies.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: spawnCheckDiamater
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 1214324756745251567, guid: 8c725c34ffeb68f45b83504974d5a4e9, type: 3}
+    - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: enemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 6706929183465744807, guid: 1a24678410108624696b18f40f576092, type: 3}
+    - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: enemies.Array.data[2]
+      value: 
+      objectReference: {fileID: 6155150815945940315, guid: db1420edd7e365f4abc8f11b06733916, type: 3}
+    - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: enemies.Array.data[3]
+      value: 
+      objectReference: {fileID: 8955358421220367913, guid: fe0aa05cc9ac3094386f2e9eb3de6073, type: 3}
+    - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: enemies.Array.data[4]
+      value: 
+      objectReference: {fileID: 1214324756745251567, guid: 2292a0d41c385bf4b9b31219adce5083, type: 3}
+    - target: {fileID: 3128906795506025370, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 128.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128906795506025370, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 58.691597
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128906795506025370, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.032917146
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128906795506025370, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128906795506025370, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128906795506025370, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128906795506025370, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128906795506025370, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128906795506025370, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128906795506025370, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470723723726037510, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_Name
+      value: RoamPoint (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080539069464388505, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+--- !u!4 &536507960 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3128906795506025370, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+  m_PrefabInstance: {fileID: 536507959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &591111140
 GameObject:
   m_ObjectHideFlags: 0
@@ -4285,6 +4395,7 @@ Transform:
   - {fileID: 67568973}
   - {fileID: 1865719280}
   - {fileID: 1067151864}
+  - {fileID: 536507960}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1056229184
@@ -78315,11 +78426,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: totalValue
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: spawnCheckDiamater
@@ -78328,11 +78439,11 @@ PrefabInstance:
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[0]
       value: 
-      objectReference: {fileID: 6155150815945940315, guid: db1420edd7e365f4abc8f11b06733916, type: 3}
+      objectReference: {fileID: 6706929183465744807, guid: 1a24678410108624696b18f40f576092, type: 3}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[1]
       value: 
-      objectReference: {fileID: 6706929183465744807, guid: 1a24678410108624696b18f40f576092, type: 3}
+      objectReference: {fileID: 8955358421220367913, guid: fe0aa05cc9ac3094386f2e9eb3de6073, type: 3}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[2]
       value: 
@@ -78388,6 +78499,10 @@ PrefabInstance:
     - target: {fileID: 4470723723726037510, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: m_Name
       value: RoamPoint (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080539069464388505, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -78519,7 +78634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: spawnCheckDiamater
@@ -78528,11 +78643,11 @@ PrefabInstance:
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[0]
       value: 
-      objectReference: {fileID: 6155150815945940315, guid: db1420edd7e365f4abc8f11b06733916, type: 3}
+      objectReference: {fileID: 6706929183465744807, guid: 1a24678410108624696b18f40f576092, type: 3}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[1]
       value: 
-      objectReference: {fileID: 6706929183465744807, guid: 1a24678410108624696b18f40f576092, type: 3}
+      objectReference: {fileID: 8955358421220367913, guid: fe0aa05cc9ac3094386f2e9eb3de6073, type: 3}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[2]
       value: 
@@ -78588,6 +78703,10 @@ PrefabInstance:
     - target: {fileID: 4470723723726037510, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: m_Name
       value: RoamPoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080539069464388505, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -79005,7 +79124,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: totalValue
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.size
@@ -79018,15 +79137,15 @@ PrefabInstance:
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[0]
       value: 
-      objectReference: {fileID: 6155150815945940315, guid: db1420edd7e365f4abc8f11b06733916, type: 3}
+      objectReference: {fileID: 8955358421220367913, guid: fe0aa05cc9ac3094386f2e9eb3de6073, type: 3}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[1]
       value: 
-      objectReference: {fileID: 6706929183465744807, guid: 1a24678410108624696b18f40f576092, type: 3}
+      objectReference: {fileID: 8955358421220367913, guid: fe0aa05cc9ac3094386f2e9eb3de6073, type: 3}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[2]
       value: 
-      objectReference: {fileID: 6155150815945940315, guid: db1420edd7e365f4abc8f11b06733916, type: 3}
+      objectReference: {fileID: 6706929183465744807, guid: 1a24678410108624696b18f40f576092, type: 3}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.data[3]
       value: 
@@ -79078,6 +79197,10 @@ PrefabInstance:
     - target: {fileID: 4470723723726037510, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: m_Name
       value: RoamPoint (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080539069464388505, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -82978,7 +83101,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: totalValue
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1641404801840577744, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: enemies.Array.size
@@ -83051,6 +83174,10 @@ PrefabInstance:
     - target: {fileID: 4470723723726037510, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
       propertyPath: m_Name
       value: RoamPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080539069464388505, guid: 319db579b9a1c57478d4795990fa5591, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
