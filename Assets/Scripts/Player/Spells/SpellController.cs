@@ -46,7 +46,10 @@ public class SpellController : MonoBehaviour
     }
 
     private void Start()
-    {
+    { 
+        manaSlider = GameObject.FindWithTag("ManaBar").GetComponent<Slider>();
+        sliderTransform = manaSlider.GetComponent<RectTransform>();
+
         manaSlider.maxValue = maxMana;
         manaSlider.value = mana;
     }

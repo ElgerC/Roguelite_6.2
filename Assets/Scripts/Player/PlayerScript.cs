@@ -40,6 +40,8 @@ public class PlayerScript : MonoBehaviour, IDamagabele
         DontDestroyOnLoad(gameObject);
         rb = GetComponent<Rigidbody2D>();
 
+        healthBar = GameObject.FindWithTag("Healthbar").GetComponent<Slider>();
+
         healthBar.maxValue = health;
         healthBar.value = health;
     }

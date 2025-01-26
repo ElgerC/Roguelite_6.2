@@ -7,6 +7,10 @@ public class CameraController : MonoBehaviour
 
     private Vector3 cameraPosition;
 
+    private void Start()
+    {
+        target = FindObjectOfType<PlayerScript>().transform;
+    }
 
     private void FixedUpdate()
     {
