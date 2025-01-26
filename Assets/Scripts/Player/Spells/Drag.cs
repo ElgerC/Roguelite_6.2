@@ -56,8 +56,8 @@ public class Drag : MonoBehaviour
 
     public void HideStats()
     {
-        //Destroy(curHoverText);
-        //curHoverText = null;
+        Destroy(curHoverText);
+        curHoverText = null;
     }
     private List<float> TranslateAlteration(SpellStats stats)
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class BaseSpell : MonoBehaviour
 {
-    [SerializeField] protected SpellStats baseStats;
+    [SerializeField] public SpellStats baseStats;
 
     public List<SpellStats> alterations = new List<SpellStats>();
 
@@ -15,26 +15,26 @@ public abstract class BaseSpell : MonoBehaviour
     [SerializeField] private float projectileSizeMult;
     [SerializeField] private float projectileSpeedMult;
     [SerializeField] private float projectilesMult;
-    [SerializeField] private float selfDamageMult;
+    [SerializeField] private int selfDamageMult;
     [SerializeField] private float manaCostMult;
 
     [Header("Stats")]
     [SerializeField] protected float damage;
-    [SerializeField] protected float chargeTime;
+    public float chargeTime;
     [SerializeField] protected float range;
-    [SerializeField] protected float projectileSize;
+    [SerializeField] public float projectileSize;
     [SerializeField] protected float projectileSpeed;
-    [SerializeField] protected float projectiles;
-    public float selfDamage;
+    [SerializeField] public float projectiles;
+    public int selfDamage;
     public float manaCost;
 
     public PlayerScript playerScript;
 
-    protected virtual void Awake()
+    public float slow = 0;
+    public void GetAlterations()
     {
         ApplyAlteration(baseStats);
-
-        for(int i = 0; i < alterations.Count; ++i)
+        for (int i = 0; i < alterations.Count; ++i)
         {
             ApplyAlteration(alterations[i]);
         }
@@ -47,7 +47,8 @@ public abstract class BaseSpell : MonoBehaviour
         range += curAlt.range * rangeMult;
         projectileSize += curAlt.projectileSize * projectileSizeMult;
         projectileSpeed += curAlt.projectileSpeed * projectileSpeedMult;
-        projectiles += curAlt.projectiles * projectilesMult;
+        if ((projectiles + curAlt.projectiles * projectilesMult) > 0)
+            projectiles += curAlt.projectiles * projectilesMult;
         selfDamage += curAlt.selfDamage * selfDamageMult;
         manaCost += curAlt.manaCost * manaCostMult;
     }

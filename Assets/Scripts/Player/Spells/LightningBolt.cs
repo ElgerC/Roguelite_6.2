@@ -25,6 +25,7 @@ public class LightningBolt : BaseSpell
 
             if (dmg != null)
             {
+
                 dmg.TakeDamage((int)damage);
             }
         }
@@ -34,15 +35,17 @@ public class LightningBolt : BaseSpell
 
     private IEnumerator RangeGrow()
     {
-        for (int i = 0; i <= range*10; i++) 
+        for (int i = 0; i <= range*chargeTime; i++) 
         {
-            curRange += range / (range * 10);
+            curRange += range / (range * chargeTime);
 
-            attackPoint.transform.position += new Vector3(transform.right.x * (curRange/60), 0, 0);
+            slow += -2 / (range * chargeTime);
+
+            attackPoint.transform.position += new Vector3(transform.right.x * (attackPoint.transform.localScale.x/2/chargeTime), 0, 0);
 
             transform.localScale = new Vector3(curRange*2, curRange*2, curRange * 2);
 
-            yield return new WaitForSeconds(range / (range * 10));
+            yield return new WaitForSeconds(range / (range * chargeTime));
         }
         
     }

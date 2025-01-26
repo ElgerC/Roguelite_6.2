@@ -11,6 +11,7 @@ public class SpellController : MonoBehaviour
 
     private GameObject chosenSpell;
     [SerializeField] private GameObject currentSpell;
+    [SerializeField] private BaseSpell currentSpellScript;
 
     [SerializeField] private Transform castPoint;
     [SerializeField] private bool buttonHeld;
@@ -30,6 +31,8 @@ public class SpellController : MonoBehaviour
     public float maxMana;
     [SerializeField] private Slider manaSlider;
     [SerializeField] private RectTransform sliderTransform;
+
+    public float chargeTime;
 
     private void Awake()
     {
@@ -90,7 +93,15 @@ public class SpellController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(transform.right);
+        if (animator.GetBool("Channeling"))
+        {
+            chargeTime += Time.deltaTime;
+        }
+
+        if (currentSpellScript)
+        {
+            playerScript.aditionalSpeed = currentSpellScript.slow;
+        }
 
         if (buttonHeld && currentSpell)
         {
@@ -123,17 +134,18 @@ public class SpellController : MonoBehaviour
         {
             currentSpell = Instantiate(chosenSpell, castPoint.position, transform.rotation);
 
-            BaseSpell curSpelScript = currentSpell.GetComponent<BaseSpell>();
+            currentSpellScript = currentSpell.GetComponent<BaseSpell>();
 
-            if (curSpelScript.manaCost <= mana)
+            currentSpellScript.alterations = currentAlterations;
+            currentSpellScript.GetAlterations();
+
+            if (currentSpellScript.manaCost <= mana)
             {
-                Debug.Log(curSpelScript.manaCost);
 
-                mana -= curSpelScript.manaCost;
+                mana -= currentSpellScript.manaCost;
                 manaSlider.value = mana;
 
-                curSpelScript.alterations = currentAlterations;
-                curSpelScript.playerScript = playerScript;
+                currentSpellScript.playerScript = playerScript;
             }
             else
             {
@@ -151,28 +163,55 @@ public class SpellController : MonoBehaviour
     {
         Destroy(currentSpell);
 
-        currentSpell = null;
-        chosenSpell = null;
 
-        animator.SetTrigger("CastFail");
+        ResetVariables();
+
+
     }
     public void Release()
     {
         if (buttonHeld == false && currentSpell)
         {
-            currentSpell.GetComponent<BaseSpell>().Release();
+            chargeTime = 0;
 
-            if (chosenSpell == spells[2])
+            if (currentSpellScript.chargeTime > chargeTime && chosenSpell != spells[1])
             {
-                rb.AddForce(new Vector2(-transform.right.x * currentSpell.GetComponent<BaseSpell>().selfDamage, 0));
-                playerScript.launched = true;
+                CastFail();
             }
+            else
+            {
+                currentSpellScript.Release();
 
-            currentSpell = null;
-            chosenSpell = null;
+                if(currentSpellScript.projectiles > 1)
+                {
+                    StartCoroutine(SpawnExtraProjectiles(currentSpell,currentSpellScript));
+                }
 
-            animator.SetBool("Channeling", false);
+
+                if (chosenSpell == spells[2])
+                {
+                    rb.AddForce(new Vector2(-transform.right.x * currentSpellScript.selfDamage, 0));
+                    playerScript.launched = true;
+                } else
+                {
+                    playerScript.TakeDamage(currentSpellScript.selfDamage);
+                }
+
+                ResetVariables();
+            }      
         }
+    }
+
+    private void ResetVariables()
+    {
+        currentSpell = null;
+        chosenSpell = null;
+
+        currentSpellScript = null;
+        playerScript.aditionalSpeed = 0;
+
+        animator.SetTrigger("CastFail");
+        animator.SetBool("Channeling", false);
     }
 
     public void IncreaseMana(float amount)
@@ -182,5 +221,21 @@ public class SpellController : MonoBehaviour
 
         sliderTransform.sizeDelta += new Vector2(amount / 5, 0);
         sliderTransform.position += new Vector3(amount/4, 0);  
+
+        manaSlider.value = mana;
+    }
+
+    private IEnumerator SpawnExtraProjectiles(GameObject spell, BaseSpell script)
+    {
+        for (int i = 0; i < script.projectiles-1; i++)
+        {
+            yield return new WaitForSeconds(0.2f * (script.projectileSize/2));
+            GameObject go = Instantiate(spell, castPoint.position, transform.rotation);
+
+            BaseSpell currentSpellScriptTemp = go.GetComponent<BaseSpell>();
+
+            currentSpellScriptTemp.baseStats = null;
+            currentSpellScriptTemp.Release();
+        }
     }
 }

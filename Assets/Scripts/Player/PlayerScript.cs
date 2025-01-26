@@ -23,7 +23,7 @@ public class PlayerScript : MonoBehaviour, IDamagabele
     [SerializeField] private float movementSpeed;
     [SerializeField] private float attackingMovementSpeed;
 
-    private bool slowed = false;
+    public float aditionalSpeed;
 
     public bool launched = false;
 
@@ -48,10 +48,11 @@ public class PlayerScript : MonoBehaviour, IDamagabele
         //Player can only be damaged if the bool is true
         if (canTakeDmg)
         {
-            if(amount < 0 && (maxHealth - health) > -amount)
+            if (amount < 0 && (maxHealth - health) > -amount)
             {
                 health -= maxHealth - health;
-            } else
+            }
+            else
             {
                 health -= amount;
             }
@@ -152,14 +153,7 @@ public class PlayerScript : MonoBehaviour, IDamagabele
     {
         //converting the movement to the right speed
         Vector2 move;
-        if (slowed)
-        {
-            move = new Vector2(movementInput.x, 0).normalized * attackingMovementSpeed;
-        }
-        else
-        {
-            move = new Vector2(movementInput.x, 0).normalized * movementSpeed;
-        }
+        move = new Vector2(movementInput.x, 0).normalized * (movementSpeed + aditionalSpeed);
 
         if (launched)
         {
@@ -190,13 +184,13 @@ public class PlayerScript : MonoBehaviour, IDamagabele
         if (context.performed)
         {
             animator.SetBool("IsAttacking", true);
-            slowed = true;
+            aditionalSpeed -= attackingMovementSpeed;
         }
         //On release the player stops attacking
         if (context.canceled)
         {
             animator.SetBool("IsAttacking", false);
-            slowed = false;
+            aditionalSpeed += attackingMovementSpeed;
         }
     }
 

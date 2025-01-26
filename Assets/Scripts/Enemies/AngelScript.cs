@@ -55,6 +55,11 @@ public class AngelScript : GeneralEnemyScript
         moveDirection = -moveDirection;
         flyDirection = -flyDirection;
     }
+    protected override void ChasingCheck()
+    {
+
+    }
+
     protected override void Chasing()
     {
         FlyCheck();
@@ -105,7 +110,11 @@ public class AngelScript : GeneralEnemyScript
             }
         }
         else
+        {
             m_OutsideRoam = false;
+            StartCoroutine(SecondCheck(obj));
+        }
+
     }
 
     public void SpawnEnemy()
@@ -130,5 +139,20 @@ public class AngelScript : GeneralEnemyScript
         GameManager.instance.AddRune();
 
         base.OnDeath();
+    }
+
+    private IEnumerator SecondCheck(GameObject obj)
+    {
+        yield return new WaitForSeconds(1);
+        if (Vector2.Distance(transform.position, obj.transform.position) >= roamMaxDist)
+        {
+            if (!m_OutsideRoam)
+            {
+                m_OutsideRoam = true;
+                moveDirection = -moveDirection;
+            }
+        }
+        else
+            m_OutsideRoam = false;
     }
 }

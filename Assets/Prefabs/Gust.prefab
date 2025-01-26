@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2135974617727764058}
   - component: {fileID: 6756244199843966281}
   - component: {fileID: 4997326189933639090}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Gust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,6 +66,7 @@ MonoBehaviour:
   selfDamage: 0
   manaCost: 0
   playerScript: {fileID: 0}
+  slow: 2
   airSlash: {fileID: 21300000, guid: b2443fce22bee7040b407a54610b05e7, type: 3}
 --- !u!61 &6756244199843966281
 BoxCollider2D:
@@ -150,7 +151,7 @@ GameObject:
   - component: {fileID: 3179506049370120464}
   - component: {fileID: 8715609080685654201}
   - component: {fileID: 5959552912194315131}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

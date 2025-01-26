@@ -17,7 +17,7 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
     [Header("States")]
     public States state = States.Roaming;
     public GameObject roamPoint;
-    [SerializeField] protected float roamMaxDist;
+    [SerializeField] public float roamMaxDist;
     protected bool m_OutsideRoam;
 
     [Header("Detection")]
@@ -104,7 +104,6 @@ public abstract class GeneralEnemyScript : MonoBehaviour, IDamagabele
         }
         else
         {
-            player = null;
             return false;
         }
     }

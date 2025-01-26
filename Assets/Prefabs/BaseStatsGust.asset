@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BaseStatsGust
   m_EditorClassIdentifier: 
   damage: 3
-  chargeTime: 1
+  chargeTime: 0
   range: 1
   projectileSize: 1
   projectileSpeed: 9

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: BaseStatsFireBall
   m_EditorClassIdentifier: 
   damage: 2
-  chargeTime: 1
+  chargeTime: 0
   range: 0.75
-  projectileSize: 2
+  projectileSize: 1
   projectileSpeed: 4
   projectiles: 1
   selfDamage: 0

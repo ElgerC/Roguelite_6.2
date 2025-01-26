@@ -6,16 +6,13 @@ public class PlayerFireball : BaseSpell
 {
     private Rigidbody2D rb;
     private CircleCollider2D circleCol;
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-
         rb = GetComponent<Rigidbody2D>();
         circleCol = GetComponent<CircleCollider2D>();
     }
     protected void Start()
     {
-        circleCol.enabled = false;
         transform.localScale = new Vector3(projectileSize, projectileSize, projectileSize);
     }
 

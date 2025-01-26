@@ -11,6 +11,6 @@ public class SpellStats : ScriptableObject
     public float projectileSize;
     public float projectileSpeed;
     public float projectiles;
-    public float selfDamage;
+    public int selfDamage;
     public float manaCost;
 }

@@ -9,9 +9,8 @@ public class GustScript : BaseSpell
     private Animator animator;
 
     [SerializeField] private Sprite airSlash;
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         rb = GetComponent<Rigidbody2D>();
         squareCol = GetComponent<BoxCollider2D>();
 
