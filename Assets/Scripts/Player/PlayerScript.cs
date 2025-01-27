@@ -26,6 +26,7 @@ public class PlayerScript : MonoBehaviour, IDamagabele
     public float aditionalSpeed;
 
     public bool launched = false;
+    private bool InAir = false;
 
     //Jump
     [SerializeField] private float jumpHeight;
@@ -114,6 +115,8 @@ public class PlayerScript : MonoBehaviour, IDamagabele
         //Checking if the player has pressed the jum button and can jump
         if (ctx.performed && animator.GetInteger("Jumps") < 2)
         {
+            StartCoroutine(Delay());
+
             rb.velocity = Vector3.zero;
 
             Vector2 jump = Vector2.up * jumpHeight;
@@ -121,38 +124,28 @@ public class PlayerScript : MonoBehaviour, IDamagabele
 
             //Setting a animator variable
             animator.SetInteger("Jumps", animator.GetInteger("Jumps") + 1);
-
-            //Growing check radius while in the air
-            if (animator.GetInteger("Jumps") > 1)
-            {
-                groundCheckRadius = 1.1f;
-            }
         }
     }
 
     private void GroundCheck()
     {
         //Checking if the player is in the air
-        if (animator.GetInteger("Jumps") > 0)
+        if (animator.GetInteger("Jumps") > 0 && InAir)
         {
-            //Making a circle that detects nearby objects
-            Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, groundCheckRadius, groundCheckLayerMask);
-
-            for (int i = 0; i < objects.Length; i++)
+            RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, -transform.up, groundCheckRadius, groundCheckLayerMask);
+            if (hit.Length > 0)
             {
-                if (objects[i].gameObject != gameObject)
-                {
-                    //Resting the animtor and check radius
-                    animator.SetInteger("Jumps", 0);
-                    groundCheckRadius = 1f;
-                }
-
+                //Resting the animtor and check radius
+                animator.SetInteger("Jumps", 0);
+                InAir = false;
             }
         }
     }
 
     private void Update()
     {
+        Debug.DrawRay(transform.position, -transform.up*groundCheckRadius,Color.red);
+
         //converting the movement to the right speed
         Vector2 move;
         move = new Vector2(movementInput.x, 0).normalized * (movementSpeed + aditionalSpeed);
@@ -211,5 +204,11 @@ public class PlayerScript : MonoBehaviour, IDamagabele
     public void ChangeHealthUI()
     {
         healthBar.value = health;
+    }
+
+    private IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        InAir = true;
     }
 }

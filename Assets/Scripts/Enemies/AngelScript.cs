@@ -18,6 +18,7 @@ public class AngelScript : GeneralEnemyScript
     [SerializeField] private float maxHeightOffset;
 
     [SerializeField] private bool outsideRange = true;
+    [SerializeField] private bool outsideFlyRange = true;
 
     [SerializeField] private int flyDirection = -1;
     [SerializeField] private float flySpeed;
@@ -87,21 +88,51 @@ public class AngelScript : GeneralEnemyScript
 
     private void FlyCheck()
     { 
-        if (transform.position.y < minHeight || transform.position.y > maxHeight)
+        if ((transform.position.y < minHeight || transform.position.y > maxHeight) && DirectionCheck(false))
         {
-            if (!outsideRange)
+            if (!outsideFlyRange)
             {
-                outsideRange = true;
+                outsideFlyRange = true;
                 flyDirection = -flyDirection;
             }
         }
         else
-            outsideRange = false;
+            outsideFlyRange = false;
+    }
+
+    private bool DirectionCheck(bool axis)
+    {
+        if(player != null)
+        {
+            float withDirection = 0;
+            float withoutDirection = 0;
+
+            if (axis)
+            {
+                withDirection = Vector3.Distance(new Vector3(transform.position.x + moveDirection, transform.position.y), player.transform.position);
+            } else
+            {
+                withDirection = Vector3.Distance(new Vector3(transform.position.x, transform.position.y+ flyDirection), player.transform.position);
+            }
+
+
+            withoutDirection = Vector3.Distance(transform.position, player.transform.position);
+
+            if (withDirection > withoutDirection)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return false;
     }
 
     private void RoamPointCheck(GameObject obj)
     {
-        if (Vector2.Distance(transform.position, obj.transform.position) >= roamMaxDist)
+        if (Vector2.Distance(transform.position, obj.transform.position) >= roamMaxDist && DirectionCheck(true))
         {
             if (!m_OutsideRoam)
             {
@@ -112,7 +143,6 @@ public class AngelScript : GeneralEnemyScript
         else
         {
             m_OutsideRoam = false;
-            StartCoroutine(SecondCheck(obj));
         }
 
     }
@@ -139,20 +169,5 @@ public class AngelScript : GeneralEnemyScript
         GameManager.instance.AddRune();
 
         base.OnDeath();
-    }
-
-    private IEnumerator SecondCheck(GameObject obj)
-    {
-        yield return new WaitForSeconds(1);
-        if (Vector2.Distance(transform.position, obj.transform.position) >= roamMaxDist)
-        {
-            if (!m_OutsideRoam)
-            {
-                m_OutsideRoam = true;
-                moveDirection = -moveDirection;
-            }
-        }
-        else
-            m_OutsideRoam = false;
     }
 }
