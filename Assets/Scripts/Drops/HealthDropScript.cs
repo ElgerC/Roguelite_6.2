@@ -7,7 +7,7 @@ public class HealthDropScript : MonoBehaviour, IDropable
     [SerializeField] private int amount;
     public void OnCollect(PlayerScript playerScript)
     {
-        playerScript.TakeDamage(-amount);
+        playerScript.TakeDamage(amount);
 
         Destroy(gameObject);
     }
