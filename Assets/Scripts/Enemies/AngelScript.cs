@@ -10,6 +10,7 @@ public class AngelScript : GeneralEnemyScript
     private bool canAtk = true;
     [SerializeField] private float atkCd;
     [SerializeField] private GameObject attackPoint;
+    [SerializeField] private bool boss = true;
 
     private float minHeight;
     private float maxHeight;
@@ -24,7 +25,7 @@ public class AngelScript : GeneralEnemyScript
     [SerializeField] private float flySpeed;
 
     [SerializeField] private List<GameObject> enemies = new List<GameObject>();
-    
+
     protected override void Awake()
     {
         base.Awake();
@@ -73,12 +74,13 @@ public class AngelScript : GeneralEnemyScript
         if (canMove)
         {
             rb.velocity = new Vector2(moveDirection * speed, flyDirection * flySpeed);
-        } else
+        }
+        else
         {
             rb.velocity = Vector2.zero;
         }
 
-        if(canAtk)
+        if (canAtk)
         {
             canMove = false;
             animator.SetTrigger("Attack");
@@ -87,7 +89,7 @@ public class AngelScript : GeneralEnemyScript
     }
 
     private void FlyCheck()
-    { 
+    {
         if ((transform.position.y < minHeight || transform.position.y > maxHeight) && DirectionCheck(false))
         {
             if (!outsideFlyRange)
@@ -102,7 +104,7 @@ public class AngelScript : GeneralEnemyScript
 
     private bool DirectionCheck(bool axis)
     {
-        if(player != null)
+        if (player != null)
         {
             float withDirection = 0;
             float withoutDirection = 0;
@@ -110,9 +112,10 @@ public class AngelScript : GeneralEnemyScript
             if (axis)
             {
                 withDirection = Vector3.Distance(new Vector3(transform.position.x + moveDirection, transform.position.y), player.transform.position);
-            } else
+            }
+            else
             {
-                withDirection = Vector3.Distance(new Vector3(transform.position.x, transform.position.y+ flyDirection), player.transform.position);
+                withDirection = Vector3.Distance(new Vector3(transform.position.x, transform.position.y + flyDirection), player.transform.position);
             }
 
 
@@ -154,19 +157,20 @@ public class AngelScript : GeneralEnemyScript
 
         int choice = Random.Range(0, enemies.Count - 1);
 
-        GameObject go = Instantiate(enemies[choice],attackPoint.transform.position,Quaternion.identity);
+        GameObject go = Instantiate(enemies[choice], attackPoint.transform.position, Quaternion.identity);
         go.GetComponent<GeneralEnemyScript>().roamPoint = roamPoint;
     }
     private IEnumerator AtkCooldown()
     {
         canAtk = false;
-        yield return new WaitForSeconds(atkCd);    
+        yield return new WaitForSeconds(atkCd);
         canAtk = true;
     }
 
     public override void OnDeath()
     {
-        GameManager.instance.AddRune();
+        if (boss)
+            GameManager.instance.AddRune();
 
         base.OnDeath();
     }

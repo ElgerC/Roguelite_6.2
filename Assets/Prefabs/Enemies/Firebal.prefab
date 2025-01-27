@@ -122,8 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: -1, y: 0}
-  speed: 3
-  damage: 1
+  speed: 9
+  damage: 2
   time: 10
 --- !u!50 &1013922426151955725
 Rigidbody2D:
@@ -159,7 +159,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9080030652197149938}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -184,6 +184,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.00075828366}
+  m_Offset: {x: -0.00041032553, y: 0.00075828366}
   serializedVersion: 2
-  m_Radius: 0.091327876
+  m_Radius: 0.10158699

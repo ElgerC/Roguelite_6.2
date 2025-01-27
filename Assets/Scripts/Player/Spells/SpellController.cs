@@ -10,11 +10,11 @@ public class SpellController : MonoBehaviour
     [SerializeField] private List<GameObject> spells = new List<GameObject>();
 
     private GameObject chosenSpell;
-    [SerializeField] private GameObject currentSpell;
+    [SerializeField] public GameObject currentSpell;
     [SerializeField] private BaseSpell currentSpellScript;
 
     [SerializeField] private Transform castPoint;
-    [SerializeField] private bool buttonHeld;
+    [SerializeField] public bool buttonHeld;
 
     private Animator animator;
     private PlayerScript playerScript;
@@ -162,7 +162,7 @@ public class SpellController : MonoBehaviour
         buttonHeld = false;
     }
 
-    private void CastFail()
+    public void CastFail()
     {
         Destroy(currentSpell);
 

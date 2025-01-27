@@ -72,10 +72,8 @@ public class WalkingEnemyScript : GeneralEnemyScript
 
         if (Physics2D.Raycast(footHeight.transform.position, -transform.right, stepRayLength, stepLayerMask))
         {
-            Debug.Log("Obstacle detected");
             if (!Physics2D.Raycast(kneeHeight.transform.position, -transform.right, stepRayLength, stepLayerMask))
             {
-                Debug.Log("Step");
                 rb.MovePosition(new Vector2(transform.position.x, transform.position.y + stepHeight));
             }
             else

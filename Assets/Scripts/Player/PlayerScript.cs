@@ -1,8 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -51,20 +47,15 @@ public class PlayerScript : MonoBehaviour, IDamagabele
         //Player can only be damaged if the bool is true
         if (canTakeDmg)
         {
-            if (amount < 0 && (maxHealth - health) > -amount)
-            {
-                health -= maxHealth - health;
-            }
-            else
-            {
-                health -= amount;
-            }
+            health -= amount;
+
 
             if (amount > 0)
             {
                 //Checking if the player is still alive
                 if (health > 0)
                 {
+                    if(!GetComponent<SpellController>().currentSpell)
                     animator.SetTrigger("Hurt");
                 }
                 else
@@ -144,7 +135,7 @@ public class PlayerScript : MonoBehaviour, IDamagabele
 
     private void Update()
     {
-        Debug.DrawRay(transform.position, -transform.up*groundCheckRadius,Color.red);
+        Debug.DrawRay(transform.position, -transform.up * groundCheckRadius, Color.red);
 
         //converting the movement to the right speed
         Vector2 move;

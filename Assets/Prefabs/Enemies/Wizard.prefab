@@ -149,18 +149,18 @@ MonoBehaviour:
   state: 0
   roamPoint: {fileID: 0}
   roamMaxDist: 8
-  detectionRange: 12
+  detectionRange: 22
   detectionLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  attackRange: 10
+  attackRange: 20
   player: {fileID: 0}
-  health: 3
+  health: 1
   value: 4
-  moveDirection: -1
+  moveDirection: 1
   firebal: {fileID: 9080030652197149938, guid: 8d2251177c09c5c4484718936d92ef8e, type: 3}
   attackPoint: {fileID: 2283777672338541390}
-  AtkCd: 6
+  AtkCd: 5
 --- !u!50 &6730228022819954816
 Rigidbody2D:
   serializedVersion: 4
